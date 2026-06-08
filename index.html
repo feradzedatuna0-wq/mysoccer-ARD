@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Card Spinner - Collection Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- 🔋 დღიური ლიმიტის პანელი -->
+        <div class="energy-panel">
+            <div>📅 TODAY'S SPINS: <span id="energy-count">10</span>/10</div>
+            <div class="limit-text">LIMIT: 10 PER DAY</div>
+        </div>
+
+        <!-- ⚽ გიგანტური 600x600 ბარათი -->
+        <div class="true" id="soccer-card">
+            <img class="image" id="player-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60" alt="Football">
+            <div class="card-tier" id="card-tier">START</div>
+            <h1 class="meta" id="player-name">დააჭირე SPIN-ს!</h1>
+            <div class="player-rating" id="player-rating">??</div>
+        </div>
+
+        <!-- 📊 შანსების დაფა -->
+        <div class="drop-rates">
+            <span style="color: #eab308;">👑 LEGEND: 2%</span> | 
+            <span style="color: #fca5a5;">✨ GOLD: 8%</span> | 
+            <span style="color: #94a3b8;">🥈 SILVER: 30%</span> | 
+            <span style="color: #b45309;">🪵 BRONZE: 60%</span>
+        </div>
+
+        <!-- 🚀 შენი გიგანტური ღილაკი -->
+        <button class="beta" id="spin-btn">SPIN ⚽</button>
+
+        <!-- 🗂️ ახალი: კოლექციის (ინდექსის) სექცია -->
+        <div class="collection-section">
+            <h2>🗂️ ჩემი კოლექცია (<span id="collection-count">0</span>/50)</h2>
+            <div class="collection-grid" id="collection-grid">
+                <!-- აქ ჩაიყრება მოგებული პატარა ბარათები JavaScript-ით -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <div class="energy-panel">
+    <div>📅 TODAY'S SPINS: <span id="energy-count">10</span>/10</div>
+    <button id="dev-reset-btn" style="background: #22c55e; color: white; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;">🔄 RESET (DEV)</button>
+    <div class="limit-text">LIMIT: 10 PER DAY</div>
+</div>
+
+</body>
+</html>
