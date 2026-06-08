@@ -1,0 +1,233 @@
+/* 🌍 1. მთავარი ბაზისი და ფონი */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* მობილურზე სქროლი რომ არ გაიჭედოს */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden; /* გვერდზე გაწევა რომ აიკრძალოს ბოლომდე */
+}
+
+/* 📦 2. თამაშის კონტეინერი - მაქსიმუმ 600px, მაგრამ ტელეფონზე 95% */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 600px;
+    margin: 20px auto;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+/* 🔋 3. ზედა ენერგიის პანელი */
+.energy-panel {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; /* ყოველთვის კონტეინერის ხელაა */
+    background: rgba(255, 255, 255, 0.05); 
+    padding: 12px 20px; 
+    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    color: #fff; 
+    font-weight: bold; 
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.limit-text {
+    color: #a855f7;
+}
+
+/* ⚽ 4. გიგანტური ბარათი (კომპიუტერზე 600x600, მობილურზე კლებულობს) */
+.true {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* ინარჩუნებს კვადრატის ფორმას ავტომატურად */
+    border: 5px solid #334155;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #1e293b;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🔤 5. ტექსტები ბარათის შიგნით */
+.meta {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    color: white;
+    font-size: 32px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+    margin: 0;
+    z-index: 5;
+}
+
+.player-rating {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 26px;
+    font-weight: 900;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 5;
+}
+
+.card-tier {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 6px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 5;
+}
+
+/* 📊 6. შანსების დაფა */
+.drop-rates {
+    display: flex; 
+    justify-content: center;
+    gap: 12px; 
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05); 
+    padding: 10px 15px; 
+    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    color: #94a3b8; 
+    font-size: 13px; 
+    font-weight: bold;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+/* 🚀 7. SPIN ღილაკი */
+.beta {
+    width: 100%;
+    height: 80px;
+    background: #ef4444; 
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.beta:hover { background: #dc2626; }
+.beta:disabled { background: #334155; cursor: not-allowed; box-shadow: none; }
+
+/* 🗂️ 8. კოლექციის სექცია */
+.collection-section {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 15px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.collection-section h2 {
+    margin-top: 0;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    color: #94a3b8;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* კომპიუტერზე 4 ცალი გვერდიგვერდ */
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.collection-item {
+    position: relative;
+    aspect-ratio: 1 / 1.3; /* პატარა ბარათის პროპორცია */
+    border: 2px solid #334155;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1e293b;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.collection-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.coll-rating {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.coll-name {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    padding: 4px 2px;
+    font-weight: bold;
+}
+
+/* 🌀 9. ტრიალის ანიმაცია */
+.spinning { animation: fastSpin 0.4s ease-in-out; }
+@keyframes fastSpin {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(0.95) rotate(180deg); filter: blur(1px); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+/* ========================================================
+   📱 10. მობილურის მორგება (ეკრანის ზომა 500px-ზე ნაკლები)
+   ======================================================== */
+@media (max-width: 500px) {
+    .meta { font-size: 22px; left: 15px; bottom: 15px; }
+    .player-rating { font-size: 18px; top: 15px; left: 15px; padding: 3px 10px; }
+    .card-tier { font-size: 13px; top: 15px; right: 15px; padding: 4px 10px; }
+    .beta { height: 65px; font-size: 22px; border-radius: 12px; }
+    .collection-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } /* ტელეფონზე ხდება 3 სვეტი */
+    .energy-panel { font-size: 14px; padding: 10px; }
+}
